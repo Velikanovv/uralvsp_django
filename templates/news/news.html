@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<main class="main">
+    <div class="container">
+        <div class="path">
+            <a href="{% url 'index' %}">Главная</a>
+            <a href="">Новости</a>
+        </div>
+        <h1>Новости</h1>
+        <div class="wrapper news-wrap">
+            {% for new in news %}
+                <div class="news-item">
+                    <a href="{% url 'news_detail' new.pk %}" class="news-item-header">
+                        <img src="{{ new.image.url }}" alt="img">
+                        <h3 class="heading">
+                            {{ new.title }}
+                        </h3>
+                    </a>
+                    <p>
+                        {{ new.short_text|truncatewords:20 }}
+                    </p>
+                    <time>
+                        {{ new.date.date }}
+                    </time>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+
+{% endblock %}
+{% block help_app %}Главная / Новости{% endblock %}

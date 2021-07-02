@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block news %}active{% endblock %}
+{% block content %}
+
+    <main class="main">
+        <div class="container">
+            <div class="path">
+                <a href="{% url 'index' %}">Главная</a>
+                <a href="{% url 'news' %}">Новости</a>
+                <a href="">{{ new.title }}</a>
+            </div>
+            <h1>{{ new.title }}</h1>
+            <p></p>
+            {{ new.text|safe }}
+            <p>Новость от {{ new.date.date }}</p>
+        </div>
+    </main>
+
+{% endblock %}
+{% block help_app %}Главная / Новости / {{ new.title }}, {{ new.date.date }}{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block catalog %}
+    active
+{% endblock %}
+
+{% block content %}
+
+    <main class="main">
+        <div class="container">
+            <div class="path">
+                <a href="{% url 'index' %}">Главная</a>
+                <a href="{% url 'category' %}">Каталог</a>
+                <a href="">{{ cat.title }}</a>
+            </div>
+            <h1>{{ cat.title }}</h1>
+            <p>
+                {{ cat.text|linebreaks }}
+            </p>
+            <div class="wrapper">
+                {% for scat in subcats %}
+                    <a href="{% url 'product_list' cat.pk scat.pk  %}" class="item_2">
+                        <h3 class="heading">
+                            {{ scat.title }}
+                        </h3>
+                        <img src="{{ scat.image.url }}" alt="img">
+                        <p class="btn btn-2">Открыть</p>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+{% endblock %}
+{% block help_app %}Главная / Каталог / {{ cat.title }}{% endblock %}

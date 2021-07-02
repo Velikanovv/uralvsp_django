@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contacts %}active{% endblock %}
+{% block content %}
+
+    <main class="main">
+        <div class="container">
+            <div class="path">
+                <a href="{% url 'index' %}">Главная</a>
+                <a href="">Контакты</a>
+            </div>
+            <h1>Контакты</h1>
+            <p></p>
+            {{ contacts.text|safe }}
+            <h1>Схема проезда</h1>
+            <p>
+            <div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/54/yekaterinburg/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Екатеринбург</a><a href="https://yandex.ru/maps/54/yekaterinburg/?from=api-maps&l=trf%2Ctrfe&ll=60.622592%2C56.908975&mode=usermaps&origin=jsapi_2_1_78&um=constructor%3AbTSXkffKEu41eKrrt6X2YWoV5HSmIrJq&utm_medium=mapframe&utm_source=maps&z=16" style="color:#eee;font-size:12px;position:absolute;top:14px;">Яндекс.Карты — транспорт, навигация, поиск мест</a><iframe src="https://yandex.ru/map-widget/v1/-/CCUemESsDA" width="100%" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
+            </p>
+        </div>
+    </main>
+
+{% endblock %}
+{% block help_app %}Главная / Контакты{% endblock %}

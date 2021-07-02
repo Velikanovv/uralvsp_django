@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ВЕСПА - Буровой инструмент и оборудование</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+<header class="header">
+    <div class="container header-top">
+        <a href="{% url 'index' %}" class="logo"><img src="{% static 'img/logo.svg' %}" alt="logo"></a>
+        <div class="header-contacts">
+            <div class="socials">
+                {% for social in SocialMediaSettings %}
+                    <a href="{{ social.url }}" target="_blank" class="socials-link"><img src="{{ social.file.url }}" alt="icon"></a>
+                {% endfor %}
+            </div>
+            <div class="header-cont phone">
+                <a href="{{ MenuSetting.number_url }}" target="_blank">{{ MenuSetting.number }}</a>
+                <a href="{{ MenuSetting.s_number_url }}" target="_blank">{{ MenuSetting.s_number }}</a>
+            </div>
+            <div class="header-cont address">
+                <address>
+                    {{ MenuSetting.address }}
+                </address>
+            </div>
+            {% if user.is_staff == True %}
+                <a class="btn" target="_blank"  href="{% url 'admin:index' %}">АдминПанель</a>
+            {% else %}
+                <button class="btn order_btn">Заказать</button>
+            {% endif %}
+            <button class="menuBtn"><span></span></button>
+        </div>
+    </div>
+    <div class="header-nav">
+        <div class="container">
+            <a href="{% url 'index' %}" class="{% block main %}{% endblock %} header-nav__item">Главная</a>
+            <a href="{% url 'category' %}" class="{% block catalog %}{% endblock %} header-nav__item">Каталог</a>
+            <a href="{% url 'production' %}" class="{% block production %}{% endblock %} header-nav__item">Производство</a>
+            <a href="{% url 'service' %}" class="{% block service %}{% endblock %} header-nav__item">Услуги</a>
+            {% for men in MenuUrl %}
+            <a href="{{ men.url }}" target="_blank" class="header-nav__item">{{ men.title }}</a>
+            {% endfor %}
+            <a href="{% url 'news' %}" class="{% block news %}{% endblock %} header-nav__item">НОВОСТИ</a>
+            <a href="{% url 'contacts' %}" class="{% block contacts %}{% endblock %} header-nav__item">КОНТАКТЫ</a>
+            {% for page in Pages %}
+                <a href="{% url 'page' page.slug %}" class="{% if c_page == page %}active{% endif %}header-nav__item">{{ page.name|upper }}</a>
+            {% endfor %}
+            <div class="row">
+                <div class="socials">
+                    {% for social in SocialMediaSettings %}
+                        <a href="{{ social.url }}" target="_blank" class="socials-link"><img src="{{ social.file.url }}" alt="icon"></a>
+                    {% endfor %}
+                </div>
+                {% if user.is_staff == True %}
+                    <a class="btn" target="_blank" href="{% url 'admin:index' %}">АдминПанель</a>
+                {% else %}
+                    <button class="btn order_btn">Заказать</button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+
+{% block content %}
+{% endblock %}
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-top">
+            <a href="{% url 'index' %}" class="logo"><img src="{% static 'img/logo.svg' %}" alt="ВЕСПА"></a>
+            <div class="socials">
+                {% for social in SocialMediaSettings %}
+                    <a href="{{ social.url }}" target="_blank" class="socials-link"><img src="{{ social.file.url }}" alt="icon"></a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="footer-middle">
+            <div class="col">
+                <p class="subheading">Страницы</p>
+                <a href="{% url 'index' %}">Главная</a>
+                <a href="{% url 'production' %}">Производство</a>
+                <a href="{% url 'service' %}">Услуги</a>
+                <a href="{% url 'news' %}">Новости</a>
+                <a href="{% url 'contacts' %}">Контакты</a>
+            </div>
+            <div class="col">
+                <p class="subheading">КАТАЛОГ</p>
+                {% for cat in categories %}
+                    <a href="{% url 'subcategory' cat.pk %}">{{ cat.title }}</a>
+                {% endfor %}
+                {% for men in MenuUrl %}
+                    {% if men.add_to_catalog == True %}
+                    <a href="{{ men.url }}">{{ men.title}}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col">
+                <p class="subheading">КОНТАКТЫ</p>
+                <address>
+                    {% for s in FooterContacts %}
+                    {{ s.name }}: {{ s.text }}<br>
+                    {% endfor %}
+                </address>
+            </div>
+            <div class="col">
+                <p class="subheading">ОБРАТНАЯ СВЯЗЬ</p>
+                <form action="{% url 'feedback' %}">
+                    <label>
+                        Email или номер телеофна
+                    </label>
+                    <input type="text" required name="text">
+                    <button type="submit" class="btn btn-2">Готово</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© Веспа {{ year }} </p>
+            <a href="{% url 'index' %}">uralvsp.ru</a>
+            <a href="https://unicy.space/" target="_blank">сделано в <b>UNICY</b></a>
+        </div>
+    </div>
+</footer>
+
+
+<div class="modal" id="modal_1">
+    <div class="modal-content">
+        <button class="modal-close">&#x2715</button>
+        <div class="modal-header">
+            <h4 class="heading">Заказ</h4>
+            <p>
+                Сообщите нам об интересующем вас товаре и мы свяжемся с вами
+            </p>
+        </div>
+        <form action="{% url 'application' %}">
+            <span class="label">Как к вам обращаться?</span>
+            <input type="text" required name="name">
+            <span class="label">Email</span>
+            <input type="email" required name="email">
+            <span class="label">Номер телефона</span>
+            <input type="tel" required name="number">
+            <span class="label">Обращение</span>
+            <textarea name="text"></textarea>
+            <input type="hidden" name="help" value="{% block help_app %}{% endblock %}">
+            <p>
+                Нажимая на кнопку вы даете согласие на обработку персональных данных и соглашаетесь с “<a href="{% url 'politics' %}" target="_blank">Политикой конфиденциальности</a>”
+            </p>
+            <button class="btn btn-4" type="submit">Отправить</button>
+        </form>
+    </div>
+</div>
+
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+
+</html>

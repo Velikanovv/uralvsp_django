@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <main class="main">
+        <div class="container">
+            <div class="path">
+                <a href="{% url 'index' %}">Главная</a>
+                <a href="">Политика конфидециальности</a>
+            </div>
+            <h1>Политика конфидециальности</h1>
+            <p></p>
+            {{ politics.text|safe }}
+        </div>
+    </main>
+
+{% endblock %}
+{% block help_app %}Главная / Политика конфидециальности{% endblock %}

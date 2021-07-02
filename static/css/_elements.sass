@@ -1,0 +1,229 @@
+*
+    padding: 0
+    margin: 0
+    box-sizing: border-box
+    border: none
+    outline: none
+
+body
+    background-color: #fff
+    color: #242424
+    font-family: 'Montserrat', sans-serif
+
+    // &::-webkit-scrollbar
+    //     width: 14px
+
+    // &::-webkit-scrollbar-track
+    //     background: linear-gradient(157.06deg, #FFDB5B 0%, #E6AC0D 100%)
+    //     -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.2) inset
+    //     box-shadow: 0 0 2px rgba(0, 0, 0, 0.2) inset
+
+    // &::-webkit-scrollbar-thumb
+    //     background: linear-gradient(157.06deg, #7CE0E1 0%, #279293 100%)
+    //     border-radius: 8px
+    //     &:hover
+    //         background: linear-gradient(157.06deg, #7CE0E1 0%, #279293 100%)
+
+.hero,
+section,
+.block_3
+    height: 100vh
+
+.socials
+    &-link
+        display: inline-block
+        width: 27px
+        height: 27px
+        margin: 0 15px
+        img
+            max-width: 100%
+
+.wrapper
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    flex-wrap: wrap
+    &.fx
+        &-start
+            justify-content: flex-start
+        &-between
+            justify-content: space-between
+
+input,
+textarea
+    resize: none
+    width: 100%
+    height: 40px
+    background-color: transparent
+    border: 1px solid #0094FF
+    padding: 0 20px
+    font-size: 15px
+    color: #000
+    margin-bottom: 16px
+textarea
+    padding: 10px
+    height: 150px
+
+.container
+    width: 100%
+    max-width: 1500px
+    padding: 0 15px
+    margin: 0 auto
+    position: relative
+    z-index: 1
+
+ul, ol
+    list-style-type: none
+
+a
+    text-decoration: none
+    color: #000
+    transition: all ease .3s
+
+    &:hover
+        opacity: .8
+
+.btn
+    min-width: 110px
+    text-align: center
+    display: inline-block
+    vertical-align: middle
+    font-style: normal
+    font-weight: 600
+    font-size: 12px
+    line-height: 15px
+    padding: 14px 40px 12px
+    color: #0094FF
+    background-color: transparent
+    border: 2px solid #0094FF
+    transition: all ease .3s
+    &:hover
+        opacity: .8
+
+    &-2
+        background-color: transparent
+        color: #fff
+        border-color: #fff
+
+    &-3,
+    &-4
+        border: none
+        background: #FFFFFF
+        padding: 20px 50px 18px
+        min-width: 155px
+        font-weight: bold
+        font-size: 17px
+    &-4
+        background: #0094FF
+        color: #fff
+
+    svg
+        margin-right: 15px
+
+    &:active
+        transform: translateY(1px) scale(.98)
+
+    &[disabled]
+        cursor: unset
+        color: rgba(255, 255, 255, 0.7)
+        opacity: .5
+
+.title
+    &-heading
+        font-weight: bold
+        font-size: 48px
+        line-height: 59px
+        color: #242424
+        margin: 0 0 70px
+        span
+            color: #0094FF
+    &-text
+        font-weight: normal
+        font-size: 18px
+        line-height: 169.4%
+        text-align: center
+        letter-spacing: 0.12em
+        color: #FFFFFF
+        margin: 0 0 40px
+
+    &-subheading
+        font-size: 36px
+        line-height: 140%
+        text-align: center
+        letter-spacing: 0.02em
+        text-transform: uppercase
+        color: #000
+        text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.62)
+        margin: 0 0 30px
+
+h1
+    font-weight: 500
+    font-size: 36px
+    line-height: 44px
+    color: #000
+    margin: 0 0 40px
+
+img 
+    max-width: 100%
+
+@media screen and (max-width: 1440px)
+    .container
+        max-width: 1200px
+
+    .title
+        &-heading
+            margin-bottom: 70px
+
+        &-text
+            font-size: 18px
+            line-height: 150%
+
+@media screen and (max-width: 1200px)
+    body
+        padding-top: 83px
+    main,
+    section,
+    .block_3
+        height: unset
+    .title
+        &-heading
+            font-size: 46px
+            line-height: 130%
+        &-descr
+            font-size: 12px
+            line-height: 14px
+            margin-bottom: 25px
+
+    .btn
+        padding: 12px 30px 10px
+        font-size: 12px
+        min-width: 135px
+
+    .wrapper
+        justify-content: space-around
+
+@media screen and (max-width: 700px)
+    body
+        padding-top: 79px
+    .title
+        &-subheading
+            font-size: 26px
+        &-heading
+            font-size: 32px
+
+    .socials
+        &-link
+            width: 25px
+            height: 25px
+            margin: 0 8px
+
+    h1
+        font-size: 28px
+        line-height: 36px
+
+    .wrapper
+        justify-content: space-between
+
+    input 
+        height: 36px
+        margin-bottom: 10px

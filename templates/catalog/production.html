@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block production %}
+    active
+{% endblock %}
+
+{% block content %}
+
+
+    <main class="main">
+        <div class="container">
+            <div class="path">
+                <a href="{% url 'index' %}">Главная</a>
+                <a href="">Производство</a>
+            </div>
+            <h1>Производство</h1>
+            <p>
+                {{ PSSettings.production_text|linebreaks }}
+            </p>
+            <div class="wrapper">
+                {% for prod in production %}
+                <a href="" class="item_2 order_btn">
+                    <h3 class="heading">
+                        {{ prod.title }}
+                    </h3>
+                    <img src="{{ prod.image.url }}" alt="img">
+                    <p class="btn btn-2">ЗАКАЗАТЬ</p>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
+{% block help_app %}Главная / Производство{% endblock %}

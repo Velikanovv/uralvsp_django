@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block catalog %}
+    active
+{% endblock %}
+
+{% block content %}
+    <main class="main">
+    <div class="container">
+        <div class="path">
+            <a href="{% url 'index' %}">Главная</a>
+            <a href="{% url 'category' %}">Каталог</a>
+            <a href="{% url 'subcategory' cat.pk %}">{{ cat.title }}</a>
+            <a href="{% url 'product_list' cat.pk subcat.pk %}">{{ subcat.title }}</a>
+            <a href="">{{ product.title }}</a>
+        </div>
+        <div class="main-wrap">
+            <img src="{{ product.image.url }}" alt="img">
+            <div class="title">
+                <h1>{{ product.title }}</h1>
+                <p>
+                    {{ product.text|safe }}
+                </p>
+            </div>
+        </div>
+
+        {% if len_sr > 0 %}
+        {% if user.is_authenticated %}
+        {% if user.is_staff == True %}
+        <form method="POST">{% csrf_token %}
+        {% for sub in sub_relist %}
+            {% if len_sr > 0 %}
+        <table>
+            <thead>
+            <tr>
+                <th class="wide">Параметры</th>
+                {% for sprod in sub %}
+                <th>{{ sprod.title }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for param in productparams %}
+            <tr>
+                <td>{{ param.title }}</td>
+                {% for sprod in sub %}
+                    {% for value in param.product_value.all %}
+                        {% if value.subproduct == sprod %}
+                        <td><input value="{{ value.title }}" name="{{ value.id }}"></td>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+            {% endif %}
+        {% endfor %}
+        <button class="btn" type="submit">Сохранить</button>
+        </form>
+        {% endif %}
+        {% else %}
+
+            {% for sub in sub_relist %}
+                <table>
+                    <thead>
+                    <tr>
+                        <th class="wide">Параметры</th>
+                        {% for sprod in sub %}
+                            <th>{{ sprod.title }}</th>
+                        {% endfor %}
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for param in productparams %}
+                        <tr>
+                            <td>{{ param.title }}</td>
+                            {% for sprod in sub %}
+                                {% for value in param.product_value.all %}
+                                    {% if value.subproduct == sprod %}
+                                        <td>{{ value.title }}</td>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+            {% endfor %}
+
+        {% endif %}
+    {% endif %}
+        <button class="btn btn-4 order_btn">Заказать</button>
+    </div>
+</main>
+{% endblock %}
+{% block help_app %}Главная / Каталог / {{ cat.title }} / {{ subcat.title }} / {{ product.title }}{% endblock %}

@@ -1,0 +1,130 @@
+.modal
+    display: none
+    position: fixed
+    top: 0
+    left: 0
+    height: 100%
+    width: 100%
+    z-index: 8000000
+    // background-color: rgba(#FBFAF3, .9)
+    background-color: rgba(#6a6a6a, .7)
+    padding: 0 15px
+    box-sizing: border-box
+    &-content
+        max-height: 100vh
+        width: 96%
+        display: block
+        max-width: 650px
+        background-color: #fff
+        // box-shadow: 0px 2px 37px rgba(0, 0, 0, 0.88)
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        padding: 35px 0 50px
+        &::-webkit-scrollbar,
+        &::-webkit-scrollbar-track,
+        &::-webkit-scrollbar-thumb
+            width: 0
+            height: 0
+            opacity: 0
+    &-header
+        text-align: center
+        padding: 0 40px 35px
+        border-bottom: 1px solid #eee
+        .heading
+            font-style: italic
+            font-weight: 600
+            font-size: 28px
+            line-height: 34px
+            margin-bottom: 20px
+        p
+            font-weight: normal
+            font-size: 16px
+            line-height: 20px
+
+    form
+        padding: 40px 40px 0
+        .label
+            display: block
+            margin-bottom: 4px
+            font-weight: normal
+            font-size: 15px
+            line-height: 18px
+        p
+            font-size: 12px
+            line-height: 15px
+            margin-bottom: 18px
+            a
+                color: #0094FF
+
+        .btn
+            width: 100%
+            font-weight: 500
+            font-size: 15px
+            line-height: 18px
+
+    &-close
+        color: #0094FF
+        font-size: 30px
+        width: 50px
+        height: 50px
+        background-image: url('../img/close.png')
+        background-size: contain
+        background-repeat: no-repeat
+        background-color: transparent
+        border-radius: 50%
+        position: absolute
+        top: 10px
+        right: 15px
+
+    &.is-open
+        display: block
+
+@media only screen and ( max-width:  1440px )
+    .modal
+        &-content
+            padding: 35px 0 40px
+            overflow-y: scroll
+
+            .heading
+                margin-bottom: 10px
+
+        &-header
+            padding: 0 30px 25px
+            p
+                font-size:
+
+        form
+            padding: 30px 40px 0
+            textarea
+                height: 100px
+
+@media only screen and ( max-width:  1200px )
+    .modal
+        &-content
+            max-width: 400px
+            padding: 25px 0 30px
+        &-header
+            padding: 0 20px 15px
+            .heading
+                font-size: 24px
+                margin-bottom: 6px
+            p
+                font-size: 14px
+                line-height: 16px
+
+        &-close
+            top: 4px
+            right: 6px
+            font-size: 26px
+
+        form
+            padding: 20px 20px 0
+            .label
+                font-size: 13px
+            p
+                font-size: 11px
+            textarea
+                height: 70px
+                margin-bottom: 10px
